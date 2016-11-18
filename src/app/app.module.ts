@@ -32,6 +32,7 @@ let widgets = [
 import { UserService } from "./services/user.service";
 import { MessagesService } from "./services/messages.service";
 
+
 let services =  [
   UserService,
   MessagesService
@@ -48,8 +49,8 @@ let services =  [
     AppComponent,
     HomeComponent,
     AboutComponent,
-     ...widgets,
-  ],
+     ...widgets
+],
   providers: [
     ApiService,
     ...services

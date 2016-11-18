@@ -23,7 +23,9 @@
     "start": "npm run server",
     "start:hmr": "npm run server -- --hot",
     "postinstall": "npm run webdriver-update",
-    "production": "npm run build && forever server"
+    "production": "npm run build && forever server",
+    "env:dev:server":"npm run build && forever -w server",
+    "env:pro:angular":"webpack && npm start"
   },
   "dependencies": {
     "@angular/common": "2.2.0",

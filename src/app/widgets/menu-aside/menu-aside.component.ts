@@ -25,22 +25,9 @@ export class MenuAsideComponent implements OnInit {
     {
       "title": "About",
       "icon": "usd",
-      "link": ['/about']
+      "link": ['/zone3']
     },
-    {
-      "title": "Sub menu",
-      "icon": "link",
-      "sublinks": [
-        {
-          "title": "Page 2",
-          "link": ['/page/2'],
-        },
-        {
-          "title": "Page 3",
-          "link": ['/page/3'],
-        }
-      ]
-    }
+   
   ];
 
   constructor(
