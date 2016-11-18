@@ -224,7 +224,8 @@ module.exports = function makeWebpackConfig() {
       // Inject script and link tags into html files
       // Reference: https://github.com/ampedandwired/html-webpack-plugin
       new HtmlWebpackPlugin({
-        template: './src/public/index.html',
+        template: './src/public/_index.html',
+        filename: "_index.html",
         chunksSortMode: 'dependency'
       }),
 
