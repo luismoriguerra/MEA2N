@@ -11,6 +11,32 @@ import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
+import { AppHeaderComponent } from "./widgets/app-header";
+import { MenuAsideComponent } from "./widgets/menu-aside";
+import { MessagesBoxComponent} from "./widgets/messages-box";
+import { NotificationBoxComponent } from "./widgets/notification-box";
+import { TasksBoxComponent } from "./widgets/tasks-box";
+import { UserBoxComponent } from "./widgets/user-box"
+
+let widgets = [
+  AppComponent,
+  AppHeaderComponent,
+  MenuAsideComponent,
+  MessagesBoxComponent,
+  NotificationBoxComponent,
+  TasksBoxComponent,
+  UserBoxComponent
+];
+
+
+import { UserService } from "./services/user.service";
+import { MessagesService } from "./services/messages.service";
+
+let services =  [
+  UserService,
+  MessagesService
+];
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -21,10 +47,12 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+     ...widgets,
   ],
   providers: [
-    ApiService
+    ApiService,
+    ...services
   ],
   bootstrap: [AppComponent]
 })

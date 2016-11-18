@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
   try {
     if (!req.user) return res.redirect('/signInPug');
 
-    res.sendFile(path.join(__dirname+'/dist/_index.html'));
+    res.sendFile(path.join(__dirname+'/dist/index.html'));
   } catch (err){
     res
       .status(500)

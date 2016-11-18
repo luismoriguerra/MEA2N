@@ -2,7 +2,7 @@
 module.exports = function (app, express, bodyParser, multipart) {
   'use strict';
   app.set('view engine', 'pug');
-  app.use(express.static('public'));
+  app.use(express.static('dist'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(multipart({
