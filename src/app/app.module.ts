@@ -31,6 +31,7 @@ let widgets = [
 
 import { UserService } from "./services/user.service";
 import { MessagesService } from "./services/messages.service";
+import { ZonesComponent } from './zones/zones.component';
 
 
 let services =  [
@@ -49,7 +50,8 @@ let services =  [
     AppComponent,
     HomeComponent,
     AboutComponent,
-     ...widgets
+     ...widgets,
+    ZonesComponent
 ],
   providers: [
     ApiService,

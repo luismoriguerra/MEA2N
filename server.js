@@ -48,12 +48,13 @@ app.use(function (req, res, next) {
     }
     next();
   } else {
-    res
-      .status(401)
-      .json({
-        error: 401,
-        message: 'La session ha expirado, por favor refresque la página'
-      });
+    return res.redirect('/login.html?s=2');
+    // res
+    //   .status(401)
+    //   .json({
+    //     error: 401,
+    //     message: 'La session ha expirado, por favor refresque la página'
+    //   });
   }
 });
 
@@ -72,17 +73,23 @@ var records = require('./server/features/records.js')(app, connection, fs),
     zonesRoutes = require('./server/features/zonesService.js');
 
 // Add routes over a prefix
-app.use('/Clients', clientRoutes);
-app.use('/Users', usersRoutes);
-app.use('/Auth', authRoutes);
-app.use('/InternalClients', internalClientRoutes);
-app.use('/Offices', officesRoutes);
-app.use('/Areas', areasRoutes);
-app.use('/DocumentTypes', documentTypesRoutes);
-app.use('/Ubigeo', ubigeoRoutes);
-app.use('/Employees', employeesRoutes);
-app.use('/Entities', entityRoutes);
-app.use('/Zones', zonesRoutes);
+app.use('/Api/Clients', clientRoutes);
+app.use('/Api/Users', usersRoutes);
+app.use('/Api/Auth', authRoutes);
+app.use('/Api/InternalClients', internalClientRoutes);
+app.use('/Api/Offices', officesRoutes);
+app.use('/Api/Areas', areasRoutes);
+app.use('/Api/DocumentTypes', documentTypesRoutes);
+app.use('/Api/Ubigeo', ubigeoRoutes);
+app.use('/Api/Employees', employeesRoutes);
+app.use('/Api/Entities', entityRoutes);
+app.use('/Api/Zones', zonesRoutes);
+
+
+app.get('*', function(req, res){
+   if (!req.user) return res.redirect('/signInPug');
+    res.sendFile(path.join(__dirname+'/dist/_index.html'));
+});
 
 app.listen(1234, function () {
   'use strict';

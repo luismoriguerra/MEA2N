@@ -17,17 +17,21 @@ export class MenuAsideComponent implements OnInit {
     })
   private current_url: string;
   private links: Array<any> = [
+    // {
+    //   "title": "Home",
+    //   "icon": "dashboard",
+    //   "link": ['/']
+    // },
     {
-      "title": "Home",
-      "icon": "dashboard",
-      "link": ['/']
-    },
-    {
-      "title": "About",
-      "icon": "usd",
-      "link": ['/zone3']
-    },
-   
+      "title": "Sistema",
+      "icon": "users",
+      "sublinks": [
+        {
+          "title": "Ubicación Geografica",
+          "link": ['/zones'],
+        }
+      ]
+    }
   ];
 
   constructor(

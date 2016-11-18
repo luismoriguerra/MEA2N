@@ -1,0 +1,14 @@
+.zonas-wrap {
+    .group {
+        display: inline-block;
+        width: 30%;
+        vertical-align: top;
+    }
+    .item {
+        padding: 10px;
+        &:hover {
+            background: #aaa;
+            cursor: pointer;
+        }
+    }
+}

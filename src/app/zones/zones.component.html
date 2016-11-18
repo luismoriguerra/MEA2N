@@ -1,0 +1,32 @@
+<h3>Gestion de zonas</h3>
+<div class="zonas-wrap">
+  <div class="departamentos group">
+    <div class="group-title">
+      Departamentos
+    </div>
+    <div class="item"  
+          *ngFor="let item of departamentos"
+          (click)="showProvincias(item)">
+      {{item.name}}
+    </div>
+  </div>
+  <div class="provincias group">
+     <div class="group-title">
+      Provincias
+    </div>
+    <div class="item"  
+          *ngFor="let item of provincias"
+          (click)="showDistritos(item)">
+      {{item.name}}
+    </div>
+  </div>
+  <div class="distritos group">
+     <div class="group-title">
+      Distritos
+    </div>
+     <div class="item"  
+          *ngFor="let item of distritos">
+      {{item.name}}  {{item.code}}
+    </div>
+  </div>
+</div>
