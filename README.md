@@ -27,16 +27,14 @@ $ git clone https://github.com/lueimg/MEA2N.git mea2n
 $ cd mea2n
 
 # install the dependencies with npm
-$ npm install  or  the fucking faster yarn install
-
-# start express server
-$ forever -w server
+$ npm install  or  the crazy faster yarn install
 
 # create base template
 $ npm run build
 
-# start the angular 2 app
-$ npm start
+# start express server
+$ forever server
+
 ```
 go to [http://localhost:1234](http://localhost:1234) in your browser.
 
@@ -53,16 +51,16 @@ What you need to run this app:
 
 * `fork` this repo
 * `clone` your fork
-* `npm install` to install all dependencies 
+* `npm install` to install all dependencies  or yarn install
 
 ## Developing
 
 After you have installed all dependencies you can now start developing openning 2 terminals and running separately:
-* `forever -w server`
-* `npm start`
+* `forever -w server` // we are express which run mysql and static files
+* `webpack` // generate the index.html and allow to access to angular 2 develop mode 
+* `npm start` // start develop mode in angular 2
 
 `Forever` will start a local server in Express The application can be checked at    `http://localhost:1234`.
-
 `npm start` will start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The application can be checked at `http://localhost:8080`.
 
 As an alternative, you can work using Hot Module Replacement (HMR):
