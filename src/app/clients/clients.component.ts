@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {ClientsService} from "./clients.service"
-import { IClient } from './client';
+import { IClient, Client } from './client';
 
 
 @Component({
@@ -9,12 +9,18 @@ import { IClient } from './client';
   styleUrls: ['./clients.component.css'],
   providers: [ClientsService]
 })
-export class ClientsComponent implements OnInit {
+
+export class ClientsComponent  {
+  constructor( private clientsService: ClientsService) {}
   @ViewChild('dt') dataTable: any;
+
+  refreshTable() {
+    this.dataTable.reset();
+  }
   
   clientList : any[] = [];
   totalRecords: number = 0;
-  clientActive: IClient;
+  client: IClient = new Client();
 
   nexPage(conf) {
     this.clientsService.getClients(conf).subscribe(response => {
@@ -23,28 +29,31 @@ export class ClientsComponent implements OnInit {
     })
   }
 
-  constructor( private clientsService: ClientsService) { }
-
-  ngOnInit() {}
-  
-  createNewClient() {
-
-  }
-  editClient (item: IClient) {
-  }
-
   isShowDeleteDialogDisplayed = false;
   showDeleteDialog (item: IClient) {
     this.isShowDeleteDialogDisplayed = true;
-    this.clientActive = item;
-    console.log(this.clientActive)
+    this.client = item;
   }
-
   deleteClient(client) {
     this.isShowDeleteDialogDisplayed = false;
-    console.log(client);
     this.clientsService.deleteClient(client).subscribe(response => {
-      this.dataTable.reset();
+      this.refreshTable();
+    });
+  }
+
+  isCreatedDialogDisplayed = false;
+  showDialogCreateClient() {
+    this.client = new Client();
+    this.isCreatedDialogDisplayed = true;
+  }
+  createClient () {
+
+    if (!this.client.description) return;
+    if (!this.client.legacy_id) return;
+
+    this.isCreatedDialogDisplayed = false;
+    this.clientsService.createClient(this.client).subscribe(response => {
+      this.refreshTable();
     });
   }
 

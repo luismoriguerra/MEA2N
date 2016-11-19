@@ -1,5 +1,5 @@
 <h3>Gestion de Clientes</h3>
- <button pButton type="text" (click)="createNewClient()" icon="fa-plus" label="Crear nuevo" class="btn btn-danger"></button>
+  <button pButton type="text" (click)="showDialogCreateClient()" icon="fa-plus" label="Crear nuevo"></button>
  <p></p>
 <p-dataTable #dt
              [value]="clientList" 
@@ -16,22 +16,46 @@
          <template let-client="rowData" pTemplate type="body">
             <button pButton type="text" (click)="editClient(client)" icon="fa-edit"></button>
             <button pButton type="text" (click)="showDeleteDialog(client)" icon="fa-trash" ></button>
-            <button type="button" class="btn btn-danger" on-click="showDeleteDialog(client)" >
-                    Eliminar
-                </button>
-            
         </template>
     </p-column>
 </p-dataTable>
 
 
 
-<p-dialog header="Confirmación'" [(visible)]="isShowDeleteDialogDisplayed" modal="'false'" width="300" responsive="true">
-    <p> Seguro de que desea elimar el client: <br><b>{{ clientActive?.description }}</b></p>
+<p-dialog header="Eliminar Cliente" [(visible)]="isShowDeleteDialogDisplayed" modal="'false'" width="300" responsive="true">
+    <p> Seguro de que desea elimar el client: <br><b>{{ client?.description }}</b></p>
         <footer>
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                 <button type="button" pButton icon="fa-close" (click)="isShowDeleteDialogDisplayed = false" label="No"></button>
-                <button type="button" pButton icon="fa-check" (click)="deleteClient(clientActive)" label="Yes"></button>
+                <button type="button" pButton icon="fa-check" (click)="deleteClient(client)" label="Yes"></button>
+            </div>
+        </footer>
+</p-dialog>
+
+
+<p-dialog header="Crear Cliente" [(visible)]="isCreatedDialogDisplayed" modal="'false'" width="800" responsive="true">
+        <form>
+            <div class="box-body">
+                    
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-2 control-label required-field" required-field="">Descripción
+                            <span class="required-field-marker">*</span></label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="client.description" name="description" type="text" class="form-control" id="descripcion" placeholder="Descripción" maxlength="200">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="legacy_id" class="col-sm-2 control-label">Código externo</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="client.legacy_id" name="legacy_id" type="text" maxlength="3" class="form-control " id="legacy_id" placeholder="ID del sistema original" >
+                        </div>
+                    </div>
+                </div>
+        </form>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="isCreatedDialogDisplayed = false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="createClient()" label="Yes"></button>
             </div>
         </footer>
 </p-dialog>
