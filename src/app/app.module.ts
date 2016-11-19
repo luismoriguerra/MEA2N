@@ -18,6 +18,27 @@ import { NotificationBoxComponent } from "./widgets/notification-box";
 import { TasksBoxComponent } from "./widgets/tasks-box";
 import { UserBoxComponent } from "./widgets/user-box"
 
+
+// import {NglModule} from 'ng-lightning/ng-lightning';
+
+// import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+
+// import { Modal, FUELUI_COMPONENT_PROVIDERS, FUELUI_DIRECTIVE_PROVIDERS, 
+//   FUELUI_PIPE_PROVIDERS, CodeHighlighter, FUELUI_ANIMATION_PROVIDERS} from "fuel-ui/fuel-ui"
+
+// http://www.primefaces.org/primeng/#/button
+import {InputTextModule, DialogModule, ButtonModule} from 'primeng/primeng';
+
+const primeModules = [
+  DialogModule,
+  InputTextModule,
+  ButtonModule
+
+];
+
+
+
+
 let widgets = [
   AppComponent,
   AppHeaderComponent,
@@ -44,14 +65,20 @@ let services =  [
     BrowserModule,
     HttpModule,
     FormsModule,
-    routing
+    routing,
+
+   ...primeModules,
+
+    // NglModule.forRoot(),
+    // Ng2BootstrapModule
+     
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
      ...widgets,
-    ZonesComponent
+    ZonesComponent  
 ],
   providers: [
     ApiService,
