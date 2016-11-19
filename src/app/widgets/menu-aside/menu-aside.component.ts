@@ -17,18 +17,30 @@ export class MenuAsideComponent implements OnInit {
     })
   private current_url: string;
   private links: Array<any> = [
-    // {
-    //   "title": "Home",
-    //   "icon": "dashboard",
-    //   "link": ['/']
-    // },
+    {
+      "title": "Registros",
+      "icon": "th",
+      "link": ['/']
+
+    },
     {
       "title": "Sistema",
       "icon": "users",
       "sublinks": [
         {
           "title": "Ubicación Geografica",
-          "link": ['/zones'],
+          "icon": "circle-o",
+          "link": ['/zonas'],
+        },
+        {
+          "title": "Clientes",
+          "icon": "circle-o",
+          "link": ['/clientes'],
+        },
+        {
+          "title": "Clientes Internos",
+          "icon": "circle-o",
+          "link": ['/clientes-internos'],
         }
       ]
     }

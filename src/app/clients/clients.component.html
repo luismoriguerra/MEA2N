@@ -1,0 +1,38 @@
+<h3>Gestion de Clientes</h3>
+ <button pButton type="text" (click)="createNewClient()" icon="fa-plus" label="Crear nuevo" class="btn btn-danger"></button>
+ <p></p>
+<p-dataTable #dt
+             [value]="clientList" 
+             [lazy]="true" 
+             [rows]="10" 
+             [paginator]="true" 
+             [totalRecords]="totalRecords"
+             [pageLinks]="3" [rowsPerPageOptions]="[10,50,100]"
+             (onLazyLoad)="nexPage($event)">
+    <p-column field="id" header="Codigo"></p-column>
+    <p-column field="description" header="Descripcion"></p-column>
+    <p-column field="legacy_id" header="Cod Ext"></p-column>
+    <p-column field="" header="">
+         <template let-client="rowData" pTemplate type="body">
+            <button pButton type="text" (click)="editClient(client)" icon="fa-edit"></button>
+            <button pButton type="text" (click)="showDeleteDialog(client)" icon="fa-trash" ></button>
+            <button type="button" class="btn btn-danger" on-click="showDeleteDialog(client)" >
+                    Eliminar
+                </button>
+            
+        </template>
+    </p-column>
+</p-dataTable>
+
+
+
+<p-dialog header="Confirmación'" [(visible)]="isShowDeleteDialogDisplayed" modal="'false'" width="300" responsive="true">
+    <p> Seguro de que desea elimar el client: <br><b>{{ clientActive?.description }}</b></p>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="isShowDeleteDialogDisplayed = false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="deleteClient(clientActive)" label="Yes"></button>
+            </div>
+        </footer>
+</p-dialog>
+
