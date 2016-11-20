@@ -14,7 +14,7 @@
     <p-column field="legacy_id" header="Cod Ext"></p-column>
     <p-column field="" header="">
          <template let-client="rowData" pTemplate type="body">
-            <button pButton type="text" (click)="editClient(client)" icon="fa-edit"></button>
+            <button pButton type="text" (click)="ShowDialogEdit(client)" icon="fa-edit"></button>
             <button pButton type="text" (click)="showDeleteDialog(client)" icon="fa-trash" ></button>
         </template>
     </p-column>
@@ -33,7 +33,7 @@
 </p-dialog>
 
 
-<p-dialog header="Crear Cliente" [(visible)]="isCreatedDialogDisplayed" modal="'false'" width="800" responsive="true">
+<p-dialog header="{{dialogTitle}}" [(visible)]="isFormDialogDisplayed" modal="'false'" width="800" responsive="true">
         <form>
             <div class="box-body">
                     
@@ -54,8 +54,8 @@
         </form>
         <footer>
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                <button type="button" pButton icon="fa-close" (click)="isCreatedDialogDisplayed = false" label="No"></button>
-                <button type="button" pButton icon="fa-check" (click)="createClient()" label="Yes"></button>
+                <button type="button" pButton icon="fa-close" (click)="isFormDialogDisplayed = false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="save()" label="Yes"></button>
             </div>
         </footer>
 </p-dialog>

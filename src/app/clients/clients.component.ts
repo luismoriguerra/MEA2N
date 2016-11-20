@@ -21,6 +21,8 @@ export class ClientsComponent  {
   clientList : any[] = [];
   totalRecords: number = 0;
   client: IClient = new Client();
+  dialogTitle: string;
+  isFormDialogDisplayed = false;
 
   nexPage(conf) {
     this.clientsService.getClients(conf).subscribe(response => {
@@ -36,28 +38,37 @@ export class ClientsComponent  {
   }
   deleteClient(client) {
     this.isShowDeleteDialogDisplayed = false;
-    this.clientsService.deleteClient(client).subscribe(response => {
-      this.refreshTable();
-    });
+    this.clientsService.deleteClient(client).subscribe(response => this.refreshTable());
   }
 
-  isCreatedDialogDisplayed = false;
   showDialogCreateClient() {
+    this.dialogTitle = "Crear Cliente";
     this.client = new Client();
-    this.isCreatedDialogDisplayed = true;
+    this.isFormDialogDisplayed = true;
   }
-  createClient () {
 
+  ShowDialogEdit (client) {
+    this.dialogTitle = "Editar Cliente";
+    this.client = client;
+    this.isFormDialogDisplayed = true;
+  }
+
+  save () {
     if (!this.client.description) return;
     if (!this.client.legacy_id) return;
 
-    this.isCreatedDialogDisplayed = false;
-    this.clientsService.createClient(this.client).subscribe(response => {
-      this.refreshTable();
-    });
+    this.isFormDialogDisplayed = false;
+
+    if (!this.client.id) {
+      this.clientsService.createClient(this.client).subscribe(
+        response => this.refreshTable()
+      );
+    } else {
+      this.clientsService.editClient(this.client).subscribe(
+        response => this.refreshTable()
+      )
+    }
   }
-
-
 
 
 }
