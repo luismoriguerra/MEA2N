@@ -1,3 +1,36 @@
-<p>
-  users works!
-</p>
+<h3>Gestion de Usuarios</h3>
+  <button pButton type="text" (click)="create()" icon="fa-plus" label="Crear nuevo"></button>
+ <p></p>
+ <div class="ui-widget-header ui-helper-clearfix" style="padding:4px 10px;border-bottom: 0 none">
+    <i class="fa fa-search" style="float:left;margin:4px 4px 0 0"></i>
+    <input #gb type="text" pInputText size="50" style="float:left" placeholder="Global Filter">
+</div>
+<p-dataTable #dt
+             [globalFilter]="gb"
+             [value]="userList" 
+             [lazy]="true" 
+             [rows]="10" 
+             [paginator]="true" 
+             [totalRecords]="totalRecords"
+             [pageLinks]="3" [rowsPerPageOptions]="[10,50,100]"
+             (onLazyLoad)="nexPage($event)">
+             
+    <p-column field="id" header="Codigo" [sortable]="true"></p-column>
+    <p-column field="name" header="Nombres" [sortable]="true"></p-column>
+    <p-column field="last_name" header="Apellidos" [sortable]="true"></p-column>
+    <p-column field="username" header="username" [sortable]="true"></p-column>
+    <p-column field="clients_count" header="Permisos" [sortable]="true"></p-column>
+    <p-column field="role_id" header="Rol" [sortable]="true"></p-column>
+    <p-column field="area_name" header="Area" [sortable]="true"></p-column>
+    <p-column field="office_name" header="Oficina" [sortable]="true"></p-column>
+    <p-column field="client_name" header="Cliente" [sortable]="true"></p-column>
+    <p-column field="status" header="Estado" [sortable]="true"></p-column>
+    <p-column field="legacy_id" header="Cod. Externo" [sortable]="true"></p-column>
+    <p-column field="" header="">
+         <template let-row="rowData" pTemplate type="body">
+            <button pButton type="text" (click)="editRow(row)" icon="fa-edit"></button>
+            <button pButton type="text" (click)="deleteRow(row)" icon="fa-trash" class="bg-red" ></button>
+        </template>
+    </p-column>
+
+</p-dataTable>

@@ -6,6 +6,7 @@ import { ZonesComponent } from './zones/zones.component';
 import { RecordsComponent } from './records/records.component';
 import { InternalClientsComponent } from './internal-clients/internal-clients.component';
 import { ClientsComponent } from './clients/clients.component';
+import {UsersComponent} from './users/users.component'
 
 const routes: Routes = [
   { path: '', component: RecordsComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'registros', component: RecordsComponent },
   { path: 'clientes', component: ClientsComponent },
   { path: 'clientes-internos', component: InternalClientsComponent },
+  { path: 'usuarios', component: UsersComponent },
   { path: '**', component: HomeComponent }
   
   

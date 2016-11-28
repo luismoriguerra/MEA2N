@@ -10,10 +10,21 @@ export class UsersService {
     constructor(private http: Http) { }
 
 	getUsers(conf): Observable<any> {
+		console.log(conf)
 		let pageNumber = conf.first/ conf.rows + 1;
-		return this.http.get(
-			`${this.userUrl}?limit=${conf.rows}&page=${pageNumber}&skip=${conf.first}`) 
-			.map(res => res.json());
+		let payload = `${this.userUrl}?limit=${conf.rows}&page=${pageNumber}&skip=${conf.first}`;
+
+		if (conf.sortField) {
+			payload = payload + `&sort=${conf.sortField}`
+		}
+
+		if (conf.sortOrder) {
+			let value = conf.sortOrder == 1 ? "asc": "desc";
+			payload = payload + `&sort_dir=${value}`
+		}
+
+
+		return this.http.get(payload).map(res => res.json());
 	}
 
 	deleteuser(user): Observable<any> {
