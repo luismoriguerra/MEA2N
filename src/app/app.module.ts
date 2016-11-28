@@ -17,6 +17,8 @@ import { MessagesBoxComponent} from "./widgets/messages-box";
 import { NotificationBoxComponent } from "./widgets/notification-box";
 import { TasksBoxComponent } from "./widgets/tasks-box";
 import { UserBoxComponent } from "./widgets/user-box";
+
+
 let AdminLTEComponents = [
   AppComponent,
   AppHeaderComponent,
@@ -34,8 +36,10 @@ const primeModules = [
   InputTextModule,
   ButtonModule,
   DataTableModule,SharedModule
-
 ];
+
+
+import {AuthenticatedUserService} from './shared/authenticated-user.service'
 
 import { UserService } from "./services/user.service";
 import { MessagesService } from "./services/messages.service";
@@ -43,11 +47,13 @@ import { ZonesComponent } from './zones/zones.component';
 import { RecordsComponent } from './records/records.component';
 import { InternalClientsComponent } from './internal-clients/internal-clients.component';
 import { ClientsComponent } from './clients/clients.component';
+import { UsersComponent } from './users/users.component';
 
 
 let services =  [
   UserService,
-  MessagesService
+  MessagesService,
+  AuthenticatedUserService
 ];
 
 @NgModule({
@@ -67,7 +73,8 @@ let services =  [
     ZonesComponent,
     RecordsComponent,
     InternalClientsComponent,
-    ClientsComponent
+    ClientsComponent,
+    UsersComponent
 ],
   providers: [
     ApiService,
