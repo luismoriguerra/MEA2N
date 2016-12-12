@@ -19,7 +19,11 @@
     <p-column field="name" header="Nombres" [sortable]="true"></p-column>
     <p-column field="last_name" header="Apellidos" [sortable]="true"></p-column>
     <p-column field="username" header="username" [sortable]="true"></p-column>
-    <p-column field="clients_count" header="Permisos" [sortable]="true"></p-column>
+    <p-column field="clients_count" header="Permisos">
+         <template let-col let-row="rowData" pTemplate type="body">
+           <a (click)="showDialogPermission(row)">{{ row[col.field]}} <i class="fa fa-fw fa-search"></i></a> 
+        </template>
+    </p-column>
     <p-column field="role_id" header="Rol" [sortable]="true"></p-column>
     <p-column field="area_name" header="Area" [sortable]="true"></p-column>
     <p-column field="office_name" header="Oficina" [sortable]="true"></p-column>
@@ -32,5 +36,14 @@
             <button pButton type="text" (click)="deleteRow(row)" icon="fa-trash" class="bg-red" ></button>
         </template>
     </p-column>
-
 </p-dataTable>
+<!--todo: terminal modal-->
+<p-dialog header="Eliminar Cliente" [(visible)]="isShowDeleteDialogDisplayed" modal="'false'" width="300" responsive="true">
+    <p> Seguro de que desea elimar el client: <br><b>{{ client?.description }}</b></p>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="isShowDeleteDialogDisplayed = false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="deleteClient(client)" label="Yes"></button>
+            </div>
+        </footer>
+</p-dialog>

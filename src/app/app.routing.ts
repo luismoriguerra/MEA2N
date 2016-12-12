@@ -16,8 +16,6 @@ const routes: Routes = [
   { path: 'clientes-internos', component: InternalClientsComponent },
   { path: 'usuarios', component: UsersComponent },
   { path: '**', component: HomeComponent }
-  
-  
 ];
 
 export const routing = RouterModule.forRoot(routes);

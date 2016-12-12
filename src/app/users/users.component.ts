@@ -27,6 +27,10 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  showDialogPermission () {
+    
+  }
+
 
   ngOnInit() {
   }
