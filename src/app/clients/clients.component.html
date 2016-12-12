@@ -1,0 +1,62 @@
+<h3>Gestion de Clientes</h3>
+  <button pButton type="text" (click)="showDialogCreateClient()" icon="fa-plus" label="Crear nuevo"></button>
+ <p></p>
+<p-dataTable #dt
+             [value]="clientList" 
+             [lazy]="true" 
+             [rows]="10" 
+             [paginator]="true" 
+             [totalRecords]="totalRecords"
+             [pageLinks]="3" [rowsPerPageOptions]="[10,50,100]"
+             (onLazyLoad)="nexPage($event)">
+    <p-column field="id" header="Codigo"></p-column>
+    <p-column field="description" header="Descripcion"></p-column>
+    <p-column field="legacy_id" header="Cod Ext"></p-column>
+    <p-column field="" header="">
+         <template let-client="rowData" pTemplate type="body">
+            <button pButton type="text" (click)="ShowDialogEdit(client)" icon="fa-edit"></button>
+            <button pButton type="text" (click)="showDeleteDialog(client)" icon="fa-trash" class="bg-red" ></button>
+        </template>
+    </p-column>
+</p-dataTable>
+
+
+
+<p-dialog header="Eliminar Cliente" [(visible)]="isShowDeleteDialogDisplayed" modal="'false'" width="300" responsive="true">
+    <p> Seguro de que desea elimar el client: <br><b>{{ client?.description }}</b></p>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="isShowDeleteDialogDisplayed = false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="deleteClient(client)" label="Yes"></button>
+            </div>
+        </footer>
+</p-dialog>
+
+
+<p-dialog header="{{dialogTitle}}" [(visible)]="isFormDialogDisplayed" modal="'false'" width="800" responsive="true">
+        <form>
+            <div class="box-body">
+                    
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-2 control-label required-field" required-field="">Descripción
+                            <span class="required-field-marker">*</span></label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="client.description" name="description" type="text" class="form-control" id="descripcion" placeholder="Descripción" maxlength="200">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="legacy_id" class="col-sm-2 control-label">Código externo</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="client.legacy_id" name="legacy_id" type="text" maxlength="3" class="form-control " id="legacy_id" placeholder="ID del sistema original" >
+                        </div>
+                    </div>
+                </div>
+        </form>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="isFormDialogDisplayed = false" label="No"></button>
+                <button type="button" pButton icon="fa-check" (click)="save()" label="Yes"></button>
+            </div>
+        </footer>
+</p-dialog>
+

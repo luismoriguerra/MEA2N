@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ApiService } from './shared';
+import {AuthenticatedUserService} from './shared/authenticated-user.service';
 
 import '../style/app.scss';
 
@@ -16,7 +17,7 @@ export class AppComponent {
 
 
 
-  constructor(private api: ApiService) {
+  constructor( private authUser: AuthenticatedUserService) {
     // Do something with api
       
   }
